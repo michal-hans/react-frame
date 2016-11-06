@@ -12,6 +12,7 @@
  */
 
 import React from 'react';
+import LayoutProvider from 'components/LayoutProvider';
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -20,10 +21,9 @@ export default class App extends React.PureComponent { // eslint-disable-line re
   };
 
   render() {
+    let layoutConfig = this.props;
     return (
-      <div>
-        {React.Children.toArray(this.props.children)}
-      </div>
+      <LayoutProvider config={layoutConfig} ></LayoutProvider>
     );
   }
 }
