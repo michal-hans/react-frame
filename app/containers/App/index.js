@@ -22,8 +22,12 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     let layoutConfig = this.props;
+    const layoutName = this.props.layoutName.type;
+
+    console.log('App:', this.props);
+
     return (
-      <LayoutProvider config={layoutConfig} ></LayoutProvider>
+      <LayoutProvider config={layoutConfig} layout={layoutName} ></LayoutProvider>
     );
   }
 }

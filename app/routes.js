@@ -22,28 +22,17 @@ export default function createRoutes(store) {
       path: '/',
       name: 'home',
       getComponent(nextState, cb) {
-        // const importModules = Promise.all([
-        //   System.import('containers/HomePage'),
-        // ]);
-        //
-        // const renderRoute = loadModule(cb);
-        //
-        // importModules.then(([component]) => {
-        //   renderRoute(component);
-        // });
-        //
-        // importModules.catch(errorLoading);
-
         let importModules = Promise.all([
           System.import('containers/HomePage'),
-          System.import('components/AppLogo')
+          System.import('components/Navigation')
         ])
 
         importModules.then((modules) => {
           cb(null, {
             main: modules[0].default,
             header: () => (<h2>HomePage</h2>),
-            sidebar: modules[1].default
+            sidebar: modules[1].default,
+            layoutName: 'block'
           })
         })
         importModules.catch(errorLoading);
@@ -53,7 +42,7 @@ export default function createRoutes(store) {
       name: 'layout',
       getComponents(nextState, cb) {
         let importModules = Promise.all([
-          System.import('components/ModuleA'),
+          System.import('components/Navigation'),
           System.import('components/ModuleB'),
           System.import('components/ModuleC')
         ])
@@ -62,7 +51,8 @@ export default function createRoutes(store) {
           cb(null, {
             main: modules[0].default,
             header: modules[1].default,
-            sidebar: modules[2].default
+            sidebar: modules[2].default,
+            layoutName: 'inline'
           })
         })
         importModules.catch(errorLoading);
